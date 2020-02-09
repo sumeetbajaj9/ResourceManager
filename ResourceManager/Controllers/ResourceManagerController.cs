@@ -22,9 +22,11 @@ namespace ResourceManager.Controllers
         [Route("getdata")]
         [HttpGet]
         public IHttpActionResult GetData() {
+            var result1 = false;
             var result = new ResourceManagerResponseModel.ResourceDetails();
             using (var session = WebApiConfig.Neo4jDriver.Session()) {
                 result = provider.GetDemo(session);
+                
             }    
             return Ok(result);
         }
