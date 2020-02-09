@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace ResourceManager
 {
@@ -13,7 +14,8 @@ namespace ResourceManager
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-
+            var corsAttr = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(corsAttr);
             // Web API routes
             config.MapHttpAttributeRoutes();
 
