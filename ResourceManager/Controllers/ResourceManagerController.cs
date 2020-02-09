@@ -22,7 +22,7 @@ namespace ResourceManager.Controllers
         [Route("getdata")]
         [HttpGet]
         public IHttpActionResult GetData() {
-            var result1 = false;
+            
             var result = new ResourceManagerResponseModel.ResourceDetails();
             using (var session = WebApiConfig.Neo4jDriver.Session()) {
                 result = provider.GetDemo(session);
@@ -34,7 +34,7 @@ namespace ResourceManager.Controllers
         [Route("fetchdata")]
         [HttpGet]
         public IHttpActionResult GetFetchedData() {
-            var result = new ResourceManagerResponseModel.ResourceDetails();
+            var result = new List<ResourceManagerResponseModel.ResourceDetails>();
             using (var session = WebApiConfig.Neo4jDriver.Session()) {
                 result = provider.GetFetchedDetails(session);
             }

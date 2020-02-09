@@ -26,9 +26,9 @@ namespace ResourceManagerEngine.Providers
             return result;
         }
 
-        public ResourceManagerResponseModel.ResourceDetails GetFetchedDetails(ISession session)
+        public List<ResourceManagerResponseModel.ResourceDetails> GetFetchedDetails(ISession session)
         {
-            var result = new ResourceManagerResponseModel.ResourceDetails();
+            var result = new List<ResourceManagerResponseModel.ResourceDetails>();
             result = repository.GetFetchedData(session);
             return result;
         }

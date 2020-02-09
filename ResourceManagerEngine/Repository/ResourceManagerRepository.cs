@@ -40,10 +40,23 @@ namespace ResourceManagerEngine.Repository
             return result;
         }
 
-        public ResourceManagerResponseModel.ResourceDetails GetFetchedData(ISession session)
+        public List<ResourceManagerResponseModel.ResourceDetails> GetFetchedData(ISession session)
         {
-            var result = new ResourceManagerResponseModel.ResourceDetails();
-
+            var result = new List<ResourceManagerResponseModel.ResourceDetails>();
+            var statementTemplate = Common.Constants.query2;
+            var statementResult = session.Run(statementTemplate);
+            var record = statementResult.ToList();
+            foreach (var rec in record) {
+                var res1 = new ResourceManagerResponseModel.ResourceDetails();
+                res1.EmployeeID = rec["EmployeeId"].As<string>();
+                res1.EmployeeName = rec["EmployeeName"].As<string>();
+                res1.OldProject = rec["OldProject"].As<string>();
+                res1.OldProjectDate = rec["OldProjectEndDate"].As<string>();
+                res1.NewProject = rec["NewProject"].As<string>();
+                res1.NewProjectStartDate = rec["NewProjectStartDate"].As<string>();
+                res1.SkillsMatching = rec["SkillsMatching"].As<List<string>>();
+                result.Add(res1);
+            }
             return result;
         }
     }
